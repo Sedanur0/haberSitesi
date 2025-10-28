@@ -1,0 +1,46 @@
+
+body {
+    font-family: 'Arial', sans-serif; 
+    background-color: #f8f9fa; /* Hafif gri arka plan */
+    color: #343a40; /* Koyu gri temel yazı rengi */
+}
+
+.navbar-brand {
+    font-weight: 700; /* Kalın font */
+    font-size: 1.5rem; /* Daha büyük font */
+    color: #ffc107 !important; /* Sarı vurgu rengi (Bootstrap warning) */
+}
+
+/* Container'a ekstra boşluk vermek */
+.container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Haber Başlıkları ve Bölüm Ayırıcılar */
+h2.border-bottom {
+    border-color: #007bff !important; 
+    font-weight: 600;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out; /* Fare üzerine gelince yumuşak geçiş */
+    border: none; /* Kenarlık kaldırma */
+}
+
+.card:hover {
+    transform: translateY(-3px); /* Hafif yukarı kayma efekti */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175) !important; /* Daha belirgin gölge */
+}
+
+.card-img-top {
+    height: 200px; /* Görsel yüksekliğini sabitleme */
+    object-fit: cover; /* Resmi keserek tam sığdırma */
+}
+
+
+.footer {
+    background-color: #343a40; /* Koyu arka plan */
+    color: #f8f9fa; /* Açık yazı */
+    padding: 2rem 0;
+}
