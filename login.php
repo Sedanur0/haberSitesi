@@ -1,23 +1,23 @@
 <?php
-session_start(); // Oturumu başlat
+session_start(); 
 require_once 'baglan.php';
 
 if (isset($_POST['giris_yap'])) {
     $email = $_POST['email'];
     $sifre = $_POST['sifre'];
 
-    // Kullanıcıyı veritabanında ara
+    // kullaniciyi veri tabanında arar
     $sorgu = $db->prepare("SELECT * FROM kullanicilar WHERE eposta = ? AND sifre = ?");
     $sorgu->execute([$email, $sifre]);
     $kullanici = $sorgu->fetch(PDO::FETCH_ASSOC);
 
     if ($kullanici) {
-        // Giriş başarılı, bilgileri oturuma kaydet
+        // giriş başarılımı değilmi ona bakar
         $_SESSION['kullanici_id'] = $kullanici['id'];
         $_SESSION['kullanici_adi'] = $kullanici['kullanici_adi'];
         $_SESSION['rol'] = $kullanici['rol'];
         
-        header("Location: index.php"); // Anasayfaya yönlendir
+        header("Location: index.php"); // anasayfaya yönlendirir
         exit;
     } else {
         $hata = "E-posta veya şifre hatalı!";

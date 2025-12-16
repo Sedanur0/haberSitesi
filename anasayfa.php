@@ -1,10 +1,10 @@
 <?php
-// 1. Manşetleri Çek (Slider için)
+// manşetler (Slider)
 $mansetSorgu = $db->prepare("SELECT * FROM haberler WHERE manset_mi = 1 ORDER BY yayin_tarihi DESC LIMIT 5");
 $mansetSorgu->execute();
 $mansetler = $mansetSorgu->fetchAll(PDO::FETCH_ASSOC);
 
-// 2. Normal Haberleri Çek (Kartlar için)
+// karttaki haberler
 $haberSorgu = $db->prepare("SELECT * FROM haberler WHERE manset_mi = 0 ORDER BY yayin_tarihi DESC LIMIT 6");
 $haberSorgu->execute();
 $haberler = $haberSorgu->fetchAll(PDO::FETCH_ASSOC);

@@ -1,26 +1,24 @@
 <?php
-// Bu dosya index.php içinde açıldığı için session_start ve baglan.php zaten yukarda çağrıldı.
-
-// 1. URL'den ID'yi al
+// url'den id alır
 $haber_id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-// 2. Haberi Veritabanından Çek
+// haberi veri tabanından çeker
 $sorgu = $db->prepare("SELECT * FROM haberler WHERE id = ?");
 $sorgu->execute([$haber_id]);
 $haber = $sorgu->fetch(PDO::FETCH_ASSOC);
 
 if (!$haber) {
     echo "<div class='alert alert-danger'>Haber bulunamadı.</div>";
-    exit; // Haber yoksa aşağıyı çalıştırma
+    exit; // haber yoksa kodun devamını çalıştırmaz
 }
 
-// 3. Yorum Gönderme İşlemi (Form gönderildiyse)
+// yorum ekelemek 
 if (isset($_POST['yorum_yap'])) {
     if (isset($_SESSION['kullanici_id'])) {
         $yorum = htmlspecialchars($_POST['yorum']); // Güvenlik için temizle
         $uye_id = $_SESSION['kullanici_id'];
         
-        $ekle = $db->prepare("INSERT INTO yorumlar (haber_id, kullanici_id, yorum_metni) VALUES (?, ?, ?)");
+        $ekle = $db->prepare("INSERT INTO yorumlar (haber_id, kullanici_id, yorum_metni) VALUES (?, ?)");
         $ekle->execute([$haber_id, $uye_id, $yorum]);
         
         echo "<div class='alert alert-success'>Yorumunuz başarıyla eklendi!</div>";
@@ -29,7 +27,7 @@ if (isset($_POST['yorum_yap'])) {
     }
 }
 
-// 4. Bu habere ait yorumları ve yazan kullanıcı adlarını çek
+// habere ait yorumları çeker
 $yorumSorgu = $db->prepare("SELECT y.*, k.kullanici_adi 
                             FROM yorumlar y 
                             JOIN kullanicilar k ON y.kullanici_id = k.id 

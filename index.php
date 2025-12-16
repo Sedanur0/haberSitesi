@@ -1,10 +1,10 @@
 <?php
-session_start(); // Session başlatılıyor
+session_start(); 
 require_once 'baglan.php';
-require_once 'baglan.php'; // Veritabanını çağır
-include 'header.php';      // Üst kısmı çağır
+require_once 'baglan.php'; 
+include 'header.php';      
 
-// URL'den 'sayfa' parametresini al, yoksa 'anasayfa' yap
+// urlden sayfanın paremetresini alır eğer almazsa anasayfa olur
 $sayfa = isset($_GET['sayfa']) ? $_GET['sayfa'] : 'anasayfa';
 
 switch ($sayfa) {
@@ -12,17 +12,17 @@ switch ($sayfa) {
         include 'anasayfa.php';
         break;
     case 'detay':
-        include 'detay.php'; // Artık detay sayfamız hazır
+        include 'detay.php'; 
         break;
     case 'kategori':
-        include 'kategori.php'; // Artık kategori sayfamız hazır
+        include 'kategori.php'; 
         break;
     default:
         include 'anasayfa.php';
         break;
 }
 
-include 'footer.php';      // Alt kısmı çağır
+include 'footer.php';      
 ?>
 
 

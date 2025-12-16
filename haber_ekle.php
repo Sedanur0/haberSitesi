@@ -2,28 +2,29 @@
 session_start();
 require_once 'baglan.php';
 
-// Yetki kontrolü
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] == 'user') {
     header("Location: index.php");
     exit;
 }
 
-// Form gönderildi mi?
+// form gönderildi mi gönderilmedi mi onu kontrol eder
 if (isset($_POST['kaydet'])) {
     $baslik = $_POST['baslik'];
     $ozet = $_POST['ozet'];
     $icerik = $_POST['icerik'];
     $kategori_id = $_POST['kategori_id'];
-    $resim_url = $_POST['resim_url']; // Basitlik için URL olarak alıyoruz
-    $manset = isset($_POST['manset']) ? 1 : 0; // Checkbox işaretli mi?
+    $resim_url = $_POST['resim_url']; 
+    $manset = isset($_POST['manset']) ? 1 : 0; 
 
     $ekle = $db->prepare("INSERT INTO haberler (baslik, ozet, icerik, resim_url, kategori_id, manset_mi) VALUES (?, ?, ?, ?, ?, ?)");
     $ekle->execute([$baslik, $ozet, $icerik, $resim_url, $kategori_id, $manset]);
 
-    header("Location: panel.php"); // Panele geri dön
+    header("Location: panel.php"); // panelden çikis yapar
     exit;
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="tr">

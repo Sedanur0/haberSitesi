@@ -1,14 +1,14 @@
 <?php
 session_start();
 require_once 'baglan.php';
-
-// 1. Yetki Kontrolü: Giriş yapmamışsa veya yetkisi user ise anasayfaya at
+// haber ekleme çıkarma paneli 
+// yetki kontrolü yapar
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] == 'user') {
     header("Location: index.php");
     exit;
 }
 
-// 2. Haberleri Listele
+// haberleri listeler
 $sorgu = $db->prepare("SELECT h.*, k.kategori_adi FROM haberler h LEFT JOIN kategoriler k ON h.kategori_id = k.id ORDER BY h.yayin_tarihi DESC");
 $sorgu->execute();
 $haberler = $sorgu->fetchAll(PDO::FETCH_ASSOC);

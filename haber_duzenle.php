@@ -2,26 +2,26 @@
 session_start();
 require_once 'baglan.php';
 
-// 1. Yetki Kontrolü (Sadece Admin ve Editörler)
+// yetki kontrolü yapar
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] == 'user') {
     header("Location: index.php");
     exit;
 }
 
-// 2. Düzenlenecek Haberin ID'sini Al
+// düzenlenecek haberin ıd sini alır
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// 3. Mevcut Bilgileri Çek (Formu doldurmak için)
+// mevcut bilgileri çeker 
 $sorgu = $db->prepare("SELECT * FROM haberler WHERE id = ?");
 $sorgu->execute([$id]);
 $haber = $sorgu->fetch(PDO::FETCH_ASSOC);
 
 if (!$haber) {
-    header("Location: panel.php"); // Haber bulunamazsa panele dön
+    header("Location: panel.php"); // haber bulunamazsan panele dön
     exit;
 }
 
-// 4. Form Gönderildiğinde Güncelleme Yap
+// güncelleme yap
 if (isset($_POST['guncelle'])) {
     $baslik = $_POST['baslik'];
     $ozet = $_POST['ozet'];
