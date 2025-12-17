@@ -1,4 +1,7 @@
 <?php
+if (isset($_GET['durum']) && $_GET['durum'] == 'basarili') {
+    echo "<div class='alert alert-success text-center m-3'>Kayıt başarılı! Şimdi giriş yapabilirsiniz.</div>";
+}
 session_start(); 
 require_once 'baglan.php';
 
@@ -50,6 +53,7 @@ if (isset($_POST['giris_yap'])) {
                 <button type="submit" name="giris_yap" class="btn btn-primary w-100">Giriş Yap</button>
             </form>
             <div class="mt-3 text-center">
+                <p>Hesabın yok mu? <a href="kayit.php">Hemen Kayıt Ol</a></p>
                 <a href="index.php">Ana Sayfaya Dön</a>
             </div>
         </div>

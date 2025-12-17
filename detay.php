@@ -15,13 +15,16 @@ if (!$haber) {
 // yorum ekelemek 
 if (isset($_POST['yorum_yap'])) {
     if (isset($_SESSION['kullanici_id'])) {
-        $yorum = htmlspecialchars($_POST['yorum']); // Güvenlik için temizle
-        $uye_id = $_SESSION['kullanici_id'];
+        $yorum = htmlspecialchars($_POST['yorum']); // Yorumu temizle
+        $uye_id = $_SESSION['kullanici_id']; // Giriş yapanın ID'si
         
-        $ekle = $db->prepare("INSERT INTO yorumlar (haber_id, kullanici_id, yorum_metni) VALUES (?, ?)");
+        $ekle = $db->prepare("INSERT INTO yorumlar (haber_id, kullanici_id, yorum_metni) VALUES (?, ?, ?)");
+        
         $ekle->execute([$haber_id, $uye_id, $yorum]);
         
         echo "<div class='alert alert-success'>Yorumunuz başarıyla eklendi!</div>";
+        
+        
     } else {
         echo "<div class='alert alert-warning'>Yorum yapmak için giriş yapmalısınız.</div>";
     }

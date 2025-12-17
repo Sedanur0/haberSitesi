@@ -34,7 +34,8 @@
 
                          <a href="cikis.php" class="btn btn-outline-light btn-sm">Çıkış</a>
                          <?php else: ?>
-                             <a href="login.php" class="btn btn-primary">Giriş Yap</a>
+                            <a href="login.php" class="btn btn-primary me-2">Giriş Yap</a>
+                            <a href="kayit.php" class="btn btn-outline-light">Kayıt Ol</a>
                         <?php endif; ?>
                     </div>
                 </div>

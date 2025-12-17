@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 17 Ara 2025, 17:44:58
+-- Üretim Zamanı: 17 Ara 2025, 19:38:13
 -- Sunucu sürümü: 8.0.43
 -- PHP Sürümü: 8.3.14
 
@@ -89,14 +89,15 @@ CREATE TABLE IF NOT EXISTS `kullanicilar` (
   `rol` enum('admin','editor','user') DEFAULT 'user',
   `kayit_tarihi` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Tablo döküm verisi `kullanicilar`
 --
 
 INSERT INTO `kullanicilar` (`id`, `kullanici_adi`, `eposta`, `sifre`, `rol`, `kayit_tarihi`) VALUES
-(1, 'sedanur', 'seda@mail.com', '123456', 'admin', '2025-12-16 14:43:41');
+(1, 'sedanur', 'seda@mail.com', '123456', 'admin', '2025-12-16 14:43:41'),
+(2, 'nazlı', 'nazli@mail.com', '1234', 'user', '2025-12-17 22:29:23');
 
 -- --------------------------------------------------------
 
@@ -114,14 +115,17 @@ CREATE TABLE IF NOT EXISTS `yorumlar` (
   PRIMARY KEY (`id`),
   KEY `haber_id` (`haber_id`),
   KEY `kullanici_id` (`kullanici_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Tablo döküm verisi `yorumlar`
 --
 
 INSERT INTO `yorumlar` (`id`, `haber_id`, `kullanici_id`, `yorum_metni`, `tarih`) VALUES
-(1, 3, 1, 'gitmemesi takım için en iyisi olur\r\n', '2025-12-16 15:55:54');
+(1, 3, 1, 'gitmemesi takım için en iyisi olur\r\n', '2025-12-16 15:55:54'),
+(4, 6, 2, 'korkutucu', '2025-12-17 22:33:23'),
+(5, 6, 2, 'korkutucu', '2025-12-17 22:33:29'),
+(6, 6, 2, ':))', '2025-12-17 22:34:37');
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
